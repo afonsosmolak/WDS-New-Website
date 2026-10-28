@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wdstransportsolutions.co.uk/sitemap.xml
