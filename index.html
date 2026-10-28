@@ -102,7 +102,7 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .mobile-menu{display:none}
 
 /* Hero */
-.hero{padding:clamp(40px,6vw,80px) 0 clamp(64px,8vw,104px)}
+.hero{padding:clamp(40px,6vw,80px) 0 clamp(64px,8vw,104px);overflow-x:clip}
 .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
 .status{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 12px;border:1px solid var(--line);background:var(--surface);border-radius:999px;font-size:14px;color:var(--ink-2);margin-bottom:28px}
 .status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,175,90,.14)}
@@ -118,9 +118,9 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .hero-media::after{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,175,80,.28),transparent 70%);z-index:-2;pointer-events:none}
 .hero-grid{position:relative;z-index:0}
 .hero-media picture img{width:100%;aspect-ratio:4/4.4;object-fit:cover;object-position:42% center;border-radius:var(--r-lg)}
-.hero-note{position:absolute;left:-28px;bottom:32px;background:var(--surface);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px;max-width:340px}
+.hero-note{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);white-space:nowrap;width:max-content;background:var(--surface);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px)}
 .hero-note img{width:40px;height:40px;border-radius:50%}
-.hero-note{border-left:3px solid var(--gold)}
+.hero-note{border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .hero-note b{display:block;font-size:14.5px;font-weight:600;line-height:1.3}
 .hero-note span{font-size:13.5px;color:var(--ink-3);line-height:1.4}
 
@@ -179,22 +179,39 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .stat span{display:block;margin-top:10px;font-size:14.5px;color:var(--ink-2)}
 
 /* Testimonials */
-.t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.t-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;position:relative;transition:border-color .3s}
-.t-card:hover{border-color:#E3CF9C}
-.t-card::before{content:'\201C';font-family:Georgia,serif;font-size:72px;line-height:.8;height:36px;display:block;margin-bottom:12px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.t-card blockquote{font-size:18px;line-height:1.55;color:var(--ink);letter-spacing:-.005em}
-.t-card .more{font-size:15px;color:var(--ink-2);margin-top:14px;line-height:1.65}
-.t-author{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:28px}
-.avatar{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--accent);box-shadow:inset 0 0 0 1px #E8D7A8}
-.t-author b{display:block;font-size:15px;font-weight:600}
-.t-author span{font-size:13.5px;color:var(--ink-3)}
+.t-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px}
+.t-head .section-head{margin-bottom:0}
+.t-nav{display:flex;gap:8px;flex-shrink:0}
+.t-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s,transform .2s}
+.t-nav button svg{width:18px;height:18px}
+.t-nav button:hover:not(:disabled){border-color:var(--gold);color:var(--accent);transform:translateY(-1px)}
+.t-nav button:disabled{opacity:.35;cursor:default}
+.t-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 24px;margin:0 -2px;scrollbar-width:none;align-items:flex-start}
+.t-track::-webkit-scrollbar{display:none}
+.t-card{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:26px 26px 22px;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s,transform .3s}
+.t-card:hover{border-color:#E3CF9C;box-shadow:0 14px 34px -20px rgba(176,133,42,.45);transform:translateY(-3px)}
+.t-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.t-stars{display:flex;gap:2px;color:var(--gold)}
+.t-stars svg{width:14px;height:14px}
+.t-mark{font-family:Georgia,serif;font-size:40px;line-height:.6;height:18px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.t-card blockquote{font-size:15.5px;line-height:1.6;color:var(--ink)}
+.t-card .more{font-size:14.5px;color:var(--ink-2);line-height:1.6;display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease,margin .4s ease;margin-top:0}
+.t-card .more > span{overflow:hidden}
+.t-card.open .more{grid-template-rows:1fr;margin-top:10px}
+.t-toggle{align-self:flex-start;margin-top:12px;background:none;border:none;padding:0;font:inherit;font-size:14px;font-weight:500;color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.t-toggle svg{width:14px;height:14px;transition:transform .3s}
+.t-card.open .t-toggle svg{transform:rotate(180deg)}
+.t-toggle:hover{color:var(--ink)}
+.t-author{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:var(--accent);box-shadow:inset 0 0 0 1px #E8D7A8;transition:background .3s,color .3s}
+.t-card:hover .avatar{background:var(--gold-grad);color:#fff}
+.t-author b{display:block;font-size:14.5px;font-weight:600;line-height:1.3}
+.t-author span{font-size:13px;color:var(--ink-3)}
 
 /* Contact */
 .cta{padding-bottom:var(--section)}
 .cta-box{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(40px,6vw,80px);display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
-.cta-box::before{content:'';position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(212,170,72,.22),transparent 65%);pointer-events:none}
-.cta-box::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold-line)}
+.cta-box::before{content:'';position:absolute;inset:12px;border:1px solid rgba(214,180,100,.32);border-radius:18px;pointer-events:none}
 .cta-box > *{position:relative}
 .cta-box h2{color:#fff}
 .cta-box .lead{color:rgba(255,255,255,.66);margin-top:16px;max-width:460px}
@@ -207,6 +224,22 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .channel b{font-size:16px;font-weight:500;white-space:nowrap}
 .channel .arrow{margin-left:auto;width:18px;height:18px;color:rgba(255,255,255,.45);transition:transform .2s}
 .channel:hover .arrow{transform:translateX(3px);color:#E2C16A}
+.phone-card{padding:22px;border-radius:var(--r-md);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:border-color .2s}
+.phone-card:hover{border-color:rgba(212,170,72,.45)}
+.phone-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.phone-top .ch-ic{width:44px;height:44px;border-radius:12px;background:rgba(212,170,72,.12);color:#E2C16A;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phone-top .ch-ic svg{width:20px;height:20px}
+.phone-top small{display:block;font-size:13px;color:rgba(255,255,255,.55)}
+.phone-top b{font-size:20px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.phone-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pbtn{display:flex;align-items:center;justify-content:center;gap:8px;height:46px;border-radius:999px;font-size:14.5px;font-weight:500;text-decoration:none;transition:background .2s,transform .2s,border-color .2s}
+.pbtn svg{width:17px;height:17px}
+.pbtn:hover{transform:translateY(-1px)}
+.pbtn-wa{background:#fff;color:var(--ink)}
+.pbtn-wa svg{color:#1FAF5A}
+.pbtn-wa:hover{background:#F3F1EC}
+.pbtn-call{border:1px solid rgba(255,255,255,.2);color:#fff}
+.pbtn-call:hover{border-color:#E2C16A;color:#E2C16A}
 
 /* Footer */
 footer{padding:56px 0 32px;background:var(--surface);position:relative}
@@ -229,7 +262,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 @media(max-width:1024px){
   .hero-grid{grid-template-columns:1fr}
   .hero-media picture img{aspect-ratio:16/11}
-  .hero-note{left:16px;bottom:16px}
+  .hero-note{bottom:20px}
   .svc-grid{grid-template-columns:1fr}
   .fleet-list{grid-template-columns:1fr;gap:0}
   .about-grid{grid-template-columns:1fr}
@@ -243,7 +276,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .mobile-menu ul{list-style:none;padding:12px 0 20px}
   .mobile-menu li a{display:block;padding:12px 0;font-size:17px;text-decoration:none;border-bottom:1px solid var(--line)}
   .mobile-menu .btn{width:100%;margin-top:16px}
-  .t-grid{grid-template-columns:1fr}
+  .t-card{flex-basis:calc((100% - 16px)/2)}
   .logos-row{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;gap:28px 16px}
   .stats{grid-template-columns:1fr 1fr}
   .stat:nth-child(3){padding-left:0;border-left:none}
@@ -255,12 +288,23 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .fleet-media{grid-template-columns:1fr}
   .fleet-media figure:last-child img{aspect-ratio:16/11}
   .points{grid-template-columns:1fr}
+  .t-card{flex-basis:86%}
+  .t-head{align-items:flex-start;flex-direction:column}
+  .t-nav{display:none}
   .hero-ctas .btn{flex:1 1 100%}
-  .hero-note{position:static;margin-top:12px;max-width:none;box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+  .hero-note{bottom:14px;padding:12px 16px;gap:12px;white-space:normal;width:calc(100% - 28px)}
+  .hero-note img{width:32px;height:32px}
+  .hero-note b{font-size:13.5px}
+  .hero-note span{font-size:12.5px}
   .logo-item,.logo-item svg{height:40px}
   .logo-item svg{max-width:84px}
   .channel{padding:14px 16px;gap:14px}
   .cta-box{border-radius:var(--r-lg)}
+  .cta-box::before{inset:8px;border-radius:17px}
+  .cta-box{padding:40px 24px 28px;gap:32px}
+  .phone-card{padding:16px}
+  .phone-top{margin-bottom:14px}
+  .phone-top b{font-size:18px}
   .brand-name small{display:none}
 }
 </style>
@@ -517,30 +561,44 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <!-- Testimonials -->
 <section class="section" id="testimonials">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">What our clients say</span>
-      <h2>Trusted by London's leading independents.</h2>
-      <p class="lead">We've partnered with breweries, distributors and logistics companies across the capital. Here's what they think.</p>
+    <div class="t-head reveal">
+      <div class="section-head">
+        <span class="kicker">What our clients say</span>
+        <h2>Trusted by London's leading independents.</h2>
+        <p class="lead">We've partnered with breweries, distributors and logistics companies across the capital.</p>
+      </div>
+      <div class="t-nav">
+        <button type="button" id="t-prev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button type="button" id="t-next" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
     </div>
-    <div class="t-grid">
+    <div class="t-track" id="t-track">
       <figure class="t-card reveal">
+        <div class="t-top"><span class="t-mark">“</span></div>
         <blockquote>WDS Solutions have been a fantastic courier partner for us. They are reliable, professional, and always make the process of delivering our cider to bars and pubs around London straightforward and stress-free.</blockquote>
-        <p class="more">For the 2 years we have used them, we have had no issues or complaints. For a drinks brand like ours, having a courier service we can trust is essential, and WDS Solutions have proved to be the perfect solution. Their communication is excellent, deliveries are handled with care, and they consistently provide a dependable service.</p>
+        <div class="more"><span>For the 2 years we have used them, we have had no issues or complaints. For a drinks brand like ours, having a courier service we can trust is essential, and WDS Solutions have proved to be the perfect solution. Their communication is excellent, deliveries are handled with care, and they consistently provide a dependable service.</span></div>
+        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <figcaption class="t-author"><div class="avatar">GT</div><div><b>Gravity Theory Cider</b><span>London, UK</span></div></figcaption>
       </figure>
       <figure class="t-card reveal d1">
+        <div class="t-top"><span class="t-mark">“</span></div>
         <blockquote>We have been using WDS Courier for years, and they have been a key partner since the very beginning of our brewery. As the first courier we onboarded, they have consistently delivered a dependable and high-quality service.</blockquote>
-        <p class="more">Their reliability and flexibility are outstanding — they are always willing to accommodate last-minute delivery requests, which is incredibly valuable in our fast-paced environment. Communication is excellent, with regular updates on ETAs and prompt provision of proof of delivery. Overall, WDS offers a highly professional, efficient, and on-time delivery service that we trust completely. We would highly recommend them.</p>
+        <div class="more"><span>Their reliability and flexibility are outstanding — they are always willing to accommodate last-minute delivery requests, which is incredibly valuable in our fast-paced environment. Communication is excellent, with regular updates on ETAs and prompt provision of proof of delivery. Overall, WDS offers a highly professional, efficient, and on-time delivery service that we trust completely. We would highly recommend them.</span></div>
+        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <figcaption class="t-author"><div class="avatar">BB</div><div><b>Brixton Brewery</b><span>London, UK</span></div></figcaption>
       </figure>
-      <figure class="t-card reveal">
+      <figure class="t-card reveal d2">
+        <div class="t-top"><span class="t-mark">“</span></div>
         <blockquote>We've been consistently impressed with the service from this logistics company. Every shipment is delivered on time, well handled, and exactly as expected.</blockquote>
-        <p class="more">The team is professional, reliable, and always goes the extra mile to ensure everything runs smoothly. Their communication is excellent, and it's reassuring to know we can count on them for every delivery. We highly recommend their services to anyone looking for a dependable and efficient delivery partner.</p>
+        <div class="more"><span>The team is professional, reliable, and always goes the extra mile to ensure everything runs smoothly. Their communication is excellent, and it's reassuring to know we can count on them for every delivery. We highly recommend their services to anyone looking for a dependable and efficient delivery partner.</span></div>
+        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <figcaption class="t-author"><div class="avatar">BR</div><div><b>Bianca Road</b><span>London, UK</span></div></figcaption>
       </figure>
-      <figure class="t-card reveal d1">
+      <figure class="t-card reveal d3">
+        <div class="t-top"><span class="t-mark">“</span></div>
         <blockquote>WDS have been making deliveries for us across London for several years now, with great efficiency and a strong service ethic. I would have no hesitation in recommending them to other businesses.</blockquote>
-        <p class="more">They are flexible, responsive to inquiries, and quick to rectify errors, including errors which are made on our side (when the wrong goods are provided for an order, for example). Above all, we can rely on them to get our products out to our customers in a timely fashion.</p>
+        <div class="more"><span>They are flexible, responsive to inquiries, and quick to rectify errors, including errors which are made on our side (when the wrong goods are provided for an order, for example). Above all, we can rely on them to get our products out to our customers in a timely fashion.</span></div>
+        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         <figcaption class="t-author"><div class="avatar">PD</div><div><b>Pressure Drop Brewing</b><span>London, UK</span></div></figcaption>
       </figure>
     </div>
@@ -556,14 +614,16 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
         <p class="lead">Whether you need same-day delivery, pallet storage or distribution support across London, our team is ready to respond fast.</p>
       </div>
       <div class="cta-actions">
-        <a href="https://wa.me/447927321895" class="channel" target="_blank" rel="noopener">
-          <span class="ch-ic" style="color:#4ADE80;background:rgba(74,222,128,.1)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
-          <span><small>WhatsApp</small><b>+44 7927 321895</b></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="tel:+447927321895" class="channel">
-          <span class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <span><small>Call us</small><b>+44 7927 321895</b></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <div class="phone-card">
+          <div class="phone-top">
+            <span class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><small>WhatsApp or call</small><b>+44 7927 321895</b></span>
+          </div>
+          <div class="phone-btns">
+            <a href="https://wa.me/447927321895" class="pbtn pbtn-wa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+            <a href="tel:+447927321895" class="pbtn pbtn-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call now</a>
+          </div>
+        </div>
         <a href="https://www.instagram.com/wdssolutions/" class="channel" target="_blank" rel="noopener">
           <span class="ch-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
           <span><small>Instagram</small><b>@wdssolutions</b></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -623,6 +683,17 @@ burger.addEventListener('click',()=>{
   burger.setAttribute('aria-label',open?'Close menu':'Open menu');
 });
 document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
+
+const track=document.getElementById('t-track'),prev=document.getElementById('t-prev'),next=document.getElementById('t-next');
+const step=()=>track.querySelector('.t-card').offsetWidth+16;
+const upd=()=>{prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
+prev.addEventListener('click',()=>track.scrollBy({left:-step()}));
+next.addEventListener('click',()=>track.scrollBy({left:step()}));
+track.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+document.querySelectorAll('.t-toggle').forEach(b=>b.addEventListener('click',()=>{
+  const c=b.closest('.t-card'),o=c.classList.toggle('open');
+  b.setAttribute('aria-expanded',o);b.firstChild.textContent=o?'Show less ':'Read more ';
+}));
 
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
