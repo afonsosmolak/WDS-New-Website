@@ -110,9 +110,13 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .hero h1 span{display:block;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
 .hero .lead{max-width:520px;margin-bottom:36px}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-.hero-points{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
-.hero-points li{list-style:none;display:flex;align-items:center;gap:8px}
-.hero-points svg{width:16px;height:16px;color:var(--gold)}
+.hero-trust{display:flex;align-items:center;gap:24px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.hero-trust > span{font-size:13.5px;color:var(--ink-3);white-space:nowrap}
+.hero-logos{display:flex;align-items:center;gap:28px;text-decoration:none}
+.hero-logos img{height:48px;width:auto;transition:transform .3s}
+.hero-logos img.wide{height:30px}
+.hero-logos img[src*="bianca"]{height:36px}
+.hero-logos img:hover{transform:translateY(-2px) scale(1.05)}
 .hero-media{position:relative}
 .hero-media::before{content:'';position:absolute;inset:0;transform:translate(18px,18px);border:1px solid #D9BC6E;border-radius:var(--r-lg);z-index:-1}
 .hero-media::after{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,175,80,.28),transparent 70%);z-index:-2;pointer-events:none}
@@ -125,14 +129,21 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .hero-note span{font-size:13.5px;color:var(--ink-3);line-height:1.4}
 
 /* Logos */
-.logos{padding:8px 0 clamp(64px,8vw,96px)}
-.logos p{text-align:center;font-size:14.5px;color:var(--ink-3);margin-bottom:36px}
-.logos-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,3vw,40px)}
-.logo-item{height:52px;justify-content:center;display:flex;align-items:center;filter:grayscale(1);opacity:.5;transition:opacity .3s,filter .3s}
-.logo-item svg,.logo-item img{height:52px;width:auto;max-width:130px}
-.logo-item img{height:46px;max-width:104px;object-fit:contain}
-.logo-item img[src*="bianca"],.logo-item img[src*="gravity"]{height:36px;opacity:.85}
-.logo-item:hover{filter:none;opacity:1}
+.logos{padding:clamp(24px,3vw,40px) 0 clamp(72px,9vw,112px)}
+.logos p{text-align:center;font-size:15px;color:var(--ink-2);margin-bottom:28px}
+.logos p b{font-weight:600;color:var(--accent)}
+.marquee{position:relative;overflow:hidden;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee 45s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.logos-set{display:flex;align-items:center;gap:clamp(48px,6vw,88px);padding-right:clamp(48px,6vw,88px)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.logo-item{height:84px;display:flex;align-items:center;justify-content:center;flex-shrink:0;filter:grayscale(1);opacity:.72;transition:opacity .35s,filter .35s,transform .35s}
+.logo-item svg{height:80px;width:auto;max-width:200px}
+.logo-item img{height:76px;width:auto;max-width:170px;object-fit:contain}
+.logo-item img[src*="bianca"]{height:58px}
+.logo-item img[src*="gravity"]{height:54px}
+.logo-item:hover{filter:none;opacity:1;transform:scale(1.06)}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.logos-set[aria-hidden]{display:none}}
 
 /* Services */
 .services{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -299,7 +310,6 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .t-frame{grid-template-columns:1fr}
   .t-logos{border-right:none;border-bottom:1px solid var(--line);min-height:200px}
   .t-logo{padding:32px}
-  .logos-row{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;gap:28px 16px}
   .stats{grid-template-columns:1fr 1fr}
   .stat:nth-child(3){padding-left:0;border-left:none}
   .stat:nth-child(n+3){padding-top:28px}
@@ -314,12 +324,22 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .t-tab img{max-width:64px;max-height:34px}
   .t-frame::after{inset:7px;border-radius:17px}
   .hero-ctas .btn{flex:1 1 100%}
+  .hero-trust{flex-direction:column;align-items:flex-start;gap:14px}
+  .hero-logos{gap:20px}
+  .hero-logos img{height:40px}
+  .hero-logos img.wide{height:24px}
+  .hero-logos img[src*="bianca"]{height:30px}
   .hero-note{bottom:14px;padding:12px 16px;gap:12px;white-space:normal;width:calc(100% - 28px)}
   .hero-note img{width:32px;height:32px}
   .hero-note b{font-size:13.5px}
   .hero-note span{font-size:12.5px}
-  .logo-item,.logo-item svg,.logo-item img{height:40px}
-  .logo-item svg,.logo-item img{max-width:84px}
+  .marquee{padding:22px 0}
+  .marquee-track{animation-duration:30s}
+  .logo-item{height:60px}
+  .logo-item svg{height:58px;max-width:140px}
+  .logo-item img{height:54px;max-width:120px}
+  .logo-item img[src*="bianca"]{height:42px}
+  .logo-item img[src*="gravity"]{height:38px}
   .channel{padding:14px 16px;gap:14px}
   .cta-box{border-radius:var(--r-lg)}
   .cta-box::before{inset:8px;border-radius:17px}
@@ -376,11 +396,15 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
         <a href="https://wa.me/447927321895" class="btn btn-primary" target="_blank" rel="noopener"><svg class="wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp us</a>
         <a href="tel:+447927321895" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +44 7927 321895</a>
       </div>
-      <ul class="hero-points reveal d3">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Same-day delivery</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Pallet storage</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Pallet distribution</li>
-      </ul>
+      <div class="hero-trust reveal d3">
+        <span>Trusted by</span>
+        <a href="#testimonials" class="hero-logos" aria-label="Read our client reviews">
+          <img src="assets/client-brixton-brewery.webp" alt="Brixton Brewery" width="339" height="339">
+          <img src="assets/client-gravity-theory.webp" alt="Gravity Theory Cider" width="560" height="222" class="wide">
+          <img src="assets/client-bianca-road.webp" alt="Bianca Road Brew Co." width="560" height="347">
+          <img src="assets/client-pressure-drop.webp" alt="Pressure Drop Brewing" width="418" height="420">
+        </a>
+      </div>
     </div>
     <div class="hero-media reveal d2">
       <picture>
@@ -397,8 +421,11 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <!-- Logos -->
 <section class="logos" aria-label="Clients">
   <div class="container">
-    <p class="reveal">Trusted by London's independent breweries and food businesses</p>
-    <div class="logos-row reveal d1">
+    <p class="reveal">Trusted by <b>London's independent breweries</b> and food businesses</p>
+  </div>
+  <div class="marquee reveal d1">
+    <div class="marquee-track">
+      <div class="logos-set">
       <div class="logo-item"><svg width="360" height="60" viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg">
 <text x="0" y="38" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="29" letter-spacing="0.5" fill="#1a1a1a">THE KERNEL</text>
 <text x="216" y="26" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="12" letter-spacing="1" fill="#1a1a1a">BREWERY</text>
@@ -435,6 +462,45 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 </svg></div>
       <div class="logo-item"><img src="assets/client-pressure-drop.webp" alt="Pressure Drop Brewing" width="418" height="420" loading="lazy"></div>
 <div class="logo-item"><img src="assets/client-gravity-theory.webp" alt="Gravity Theory Cider" width="560" height="222" loading="lazy"></div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+      <div class="logo-item"><svg width="360" height="60" viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="38" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="29" letter-spacing="0.5" fill="#1a1a1a">THE KERNEL</text>
+<text x="216" y="26" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="12" letter-spacing="1" fill="#1a1a1a">BREWERY</text>
+<text x="216" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="12" letter-spacing="1" fill="#1a1a1a">LONDON</text>
+</svg></div>
+      <div class="logo-item"><img src="assets/client-brixton-brewery.webp" alt="Brixton Brewery" width="339" height="339" loading="lazy"></div>
+      <div class="logo-item"><svg width="260" height="170" viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+<text x="15" y="68" font-family="'Brush Script MT','Lucida Handwriting','Segoe Script',cursive" font-weight="700" font-size="52" fill="#1a1a1a" transform="rotate(-4 15 68)">Square</text>
+<text x="55" y="128" font-family="'Brush Script MT','Lucida Handwriting','Segoe Script',cursive" font-weight="700" font-size="52" fill="#1a1a1a" transform="rotate(-4 55 128)">Root</text>
+</svg></div>
+      <div class="logo-item"><svg width="120" height="200" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="78" font-family="'Arial Black',sans-serif" font-weight="900" font-size="78" letter-spacing="-4" fill="#1a1a1a">40</text>
+<rect x="2" y="100" width="100" height="9" fill="#1a1a1a"/>
+<text x="0" y="180" font-family="'Arial Black',sans-serif" font-weight="900" font-size="78" letter-spacing="-2" fill="#1a1a1a">FT</text>
+</svg></div>
+      <div class="logo-item"><img src="assets/client-bianca-road.webp" alt="Bianca Road Brew Co." width="560" height="347" loading="lazy"></div>
+      <div class="logo-item"><svg width="260" height="60" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="42" font-family="'Arial Black',sans-serif" font-weight="900" font-size="40" letter-spacing="1" fill="#2e9b85">VILLAGES</text>
+</svg></div>
+      <div class="logo-item"><svg width="280" height="110" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(140,18)" fill="#c9a227">
+  <ellipse cx="0" cy="9" rx="8" ry="5.5"/>
+  <circle cx="-6.5" cy="2" r="4"/>
+  <path d="M -10,1 L -15,-1 L -10,2.5 Z"/>
+  <path d="M 5,11 Q 11,9 13,14 Q 7,14.5 5,12.5 Z"/>
+  <line x1="-2" y1="14" x2="-2" y2="21" stroke="#c9a227" stroke-width="1.4"/>
+  <line x1="2.5" y1="14" x2="3.5" y2="21" stroke="#c9a227" stroke-width="1.4"/>
+</g>
+<text x="140" y="58" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="25" fill="#1a1a1a">ANSPACH</text>
+<text x="140" y="82" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="25" fill="#1a1a1a">&amp; HOBDAY</text>
+<line x1="88" y1="98" x2="120" y2="98" stroke="#1a1a1a" stroke-width="1"/>
+<text x="140" y="102" text-anchor="middle" font-family="Georgia,serif" font-weight="500" font-size="10" letter-spacing="2.5" fill="#1a1a1a">LONDON</text>
+<line x1="160" y1="98" x2="192" y2="98" stroke="#1a1a1a" stroke-width="1"/>
+</svg></div>
+      <div class="logo-item"><img src="assets/client-pressure-drop.webp" alt="Pressure Drop Brewing" width="418" height="420" loading="lazy"></div>
+<div class="logo-item"><img src="assets/client-gravity-theory.webp" alt="Gravity Theory Cider" width="560" height="222" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
