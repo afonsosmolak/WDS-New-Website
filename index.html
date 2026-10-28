@@ -129,7 +129,9 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .logos p{text-align:center;font-size:14.5px;color:var(--ink-3);margin-bottom:36px}
 .logos-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,3vw,40px)}
 .logo-item{height:52px;justify-content:center;display:flex;align-items:center;filter:grayscale(1);opacity:.5;transition:opacity .3s,filter .3s}
-.logo-item svg{height:52px;width:auto;max-width:130px}
+.logo-item svg,.logo-item img{height:52px;width:auto;max-width:130px}
+.logo-item img{height:46px;max-width:104px;object-fit:contain}
+.logo-item img[src*="bianca"],.logo-item img[src*="gravity"]{height:36px;opacity:.85}
 .logo-item:hover{filter:none;opacity:1}
 
 /* Services */
@@ -179,34 +181,32 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .stat span{display:block;margin-top:10px;font-size:14.5px;color:var(--ink-2)}
 
 /* Testimonials */
-.t-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px}
-.t-head .section-head{margin-bottom:0}
-.t-nav{display:flex;gap:8px;flex-shrink:0}
-.t-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s,transform .2s}
-.t-nav button svg{width:18px;height:18px}
-.t-nav button:hover:not(:disabled){border-color:var(--gold);color:var(--accent);transform:translateY(-1px)}
-.t-nav button:disabled{opacity:.35;cursor:default}
-.t-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 24px;margin:0 -2px;scrollbar-width:none;align-items:flex-start}
-.t-track::-webkit-scrollbar{display:none}
-.t-card{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:26px 26px 22px;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s,transform .3s}
-.t-card:hover{border-color:#E3CF9C;box-shadow:0 14px 34px -20px rgba(176,133,42,.45);transform:translateY(-3px)}
-.t-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.t-stars{display:flex;gap:2px;color:var(--gold)}
-.t-stars svg{width:14px;height:14px}
-.t-mark{font-family:Georgia,serif;font-size:40px;line-height:.6;height:18px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.t-card blockquote{font-size:15.5px;line-height:1.6;color:var(--ink)}
-.t-card .more{font-size:14.5px;color:var(--ink-2);line-height:1.6;display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease,margin .4s ease;margin-top:0}
-.t-card .more > span{overflow:hidden}
-.t-card.open .more{grid-template-rows:1fr;margin-top:10px}
-.t-toggle{align-self:flex-start;margin-top:12px;background:none;border:none;padding:0;font:inherit;font-size:14px;font-weight:500;color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.t-toggle svg{width:14px;height:14px;transition:transform .3s}
-.t-card.open .t-toggle svg{transform:rotate(180deg)}
-.t-toggle:hover{color:var(--ink)}
-.t-author{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:var(--accent);box-shadow:inset 0 0 0 1px #E8D7A8;transition:background .3s,color .3s}
-.t-card:hover .avatar{background:var(--gold-grad);color:#fff}
-.t-author b{display:block;font-size:14.5px;font-weight:600;line-height:1.3}
-.t-author span{font-size:13px;color:var(--ink-3)}
+.t-frame{position:relative;display:grid;grid-template-columns:5fr 7fr;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.t-frame::after{content:'';position:absolute;inset:10px;border:1px solid rgba(201,160,67,.28);border-radius:18px;pointer-events:none}
+.t-logos,.t-quotes{display:grid}
+.t-logos{background:var(--sand);border-right:1px solid var(--line);min-height:380px}
+.t-logo,.t-slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),visibility 0s .7s}
+.t-logo{display:flex;align-items:center;justify-content:center;padding:48px;transform:scale(.96)}
+.t-slide{display:flex;flex-direction:column;justify-content:center;padding:clamp(36px,5vw,64px);transform:translateY(10px)}
+.t-logo.on,.t-slide.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.t-logo img{width:auto;height:auto;max-width:var(--w,62%);max-height:var(--h,58%)}
+.t-logo{container-type:size}
+.t-mark{font-family:Georgia,serif;font-size:64px;line-height:.5;height:28px;margin-bottom:20px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.t-slide blockquote{font-family:'Inter Tight','Inter',sans-serif;font-size:clamp(20px,2vw,25px);line-height:1.45;letter-spacing:-.015em;color:var(--ink);font-weight:500}
+.t-author{display:flex;align-items:center;gap:14px;margin-top:32px}
+.t-author::before{content:'';width:28px;height:1px;background:var(--gold)}
+.t-author b{font-size:15px;font-weight:600}
+.t-author span{font-size:14px;color:var(--ink-3)}
+.t-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.t-tab{position:relative;height:64px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:0 8px 6px}
+.t-tab img{max-height:46px;max-width:96px;width:auto;height:auto;filter:grayscale(1);opacity:.4;transition:opacity .3s,filter .3s}
+.t-tab:hover img{opacity:.75}
+.t-tab.on img{filter:none;opacity:1}
+.t-tab::before,.t-tab i{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--line)}
+.t-tab i{background:var(--gold-grad);transform:scaleX(0);transform-origin:left}
+.t-tab.on i{animation:t-fill var(--dur,4.5s) linear forwards}
+.t-frame-wrap.paused .t-tab.on i{animation-play-state:paused}
+@keyframes t-fill{to{transform:scaleX(1)}}
 
 /* Contact */
 .cta{padding-bottom:var(--section)}
@@ -276,7 +276,9 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .mobile-menu ul{list-style:none;padding:12px 0 20px}
   .mobile-menu li a{display:block;padding:12px 0;font-size:17px;text-decoration:none;border-bottom:1px solid var(--line)}
   .mobile-menu .btn{width:100%;margin-top:16px}
-  .t-card{flex-basis:calc((100% - 16px)/2)}
+  .t-frame{grid-template-columns:1fr}
+  .t-logos{border-right:none;border-bottom:1px solid var(--line);min-height:200px}
+  .t-logo{padding:32px}
   .logos-row{display:grid;grid-template-columns:repeat(4,1fr);justify-items:center;gap:28px 16px}
   .stats{grid-template-columns:1fr 1fr}
   .stat:nth-child(3){padding-left:0;border-left:none}
@@ -288,16 +290,16 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .fleet-media{grid-template-columns:1fr}
   .fleet-media figure:last-child img{aspect-ratio:16/11}
   .points{grid-template-columns:1fr}
-  .t-card{flex-basis:86%}
-  .t-head{align-items:flex-start;flex-direction:column}
-  .t-nav{display:none}
+  .t-tabs{gap:8px}
+  .t-tab img{max-width:64px;max-height:34px}
+  .t-frame::after{inset:7px;border-radius:17px}
   .hero-ctas .btn{flex:1 1 100%}
   .hero-note{bottom:14px;padding:12px 16px;gap:12px;white-space:normal;width:calc(100% - 28px)}
   .hero-note img{width:32px;height:32px}
   .hero-note b{font-size:13.5px}
   .hero-note span{font-size:12.5px}
-  .logo-item,.logo-item svg{height:40px}
-  .logo-item svg{max-width:84px}
+  .logo-item,.logo-item svg,.logo-item img{height:40px}
+  .logo-item svg,.logo-item img{max-width:84px}
   .channel{padding:14px 16px;gap:14px}
   .cta-box{border-radius:var(--r-lg)}
   .cta-box::before{inset:8px;border-radius:17px}
@@ -382,27 +384,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <text x="216" y="26" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="12" letter-spacing="1" fill="#1a1a1a">BREWERY</text>
 <text x="216" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="12" letter-spacing="1" fill="#1a1a1a">LONDON</text>
 </svg></div>
-      <div class="logo-item"><svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <path id="bx-top" d="M 22,112 A 78,78 0 1 1 178,112"/>
-    <path id="bx-bot" d="M 32,122 A 68,68 0 0 0 168,122"/>
-  </defs>
-  <circle cx="100" cy="100" r="92" fill="none" stroke="#1a1a1a" stroke-width="3"/>
-  <circle cx="100" cy="100" r="79" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-  <text font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="11.5" fill="#c0252c" letter-spacing="1.8">
-    <textPath href="#bx-top" xlink:href="#bx-top" startOffset="6%">BRIXTON BREWERY</textPath>
-  </text>
-  <text font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="11" fill="#c0252c" letter-spacing="2.5">
-    <textPath href="#bx-bot" xlink:href="#bx-bot" startOffset="16%">SOUTH LONDON</textPath>
-  </text>
-  <g transform="translate(100,103)">
-    <text x="4" y="44" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="95" fill="#e8a93c">B</text>
-    <text x="0" y="40" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="95" fill="#a8c93a">B</text>
-    <text x="-3" y="36" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="95" fill="#c0252c">B</text>
-  </g>
-  <text x="60" y="106" font-family="Arial,sans-serif" font-weight="700" font-size="8.5" fill="#1a1a1a">LDN</text>
-  <text x="126" y="106" font-family="Arial,sans-serif" font-weight="700" font-size="8.5" fill="#1a1a1a">SW9</text>
-</svg></div>
+      <div class="logo-item"><img src="assets/client-brixton-brewery.webp" alt="Brixton Brewery" width="339" height="339" loading="lazy"></div>
       <div class="logo-item"><svg width="260" height="170" viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
 <text x="15" y="68" font-family="'Brush Script MT','Lucida Handwriting','Segoe Script',cursive" font-weight="700" font-size="52" fill="#1a1a1a" transform="rotate(-4 15 68)">Square</text>
 <text x="55" y="128" font-family="'Brush Script MT','Lucida Handwriting','Segoe Script',cursive" font-weight="700" font-size="52" fill="#1a1a1a" transform="rotate(-4 55 128)">Root</text>
@@ -412,29 +394,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <rect x="2" y="100" width="100" height="9" fill="#1a1a1a"/>
 <text x="0" y="180" font-family="'Arial Black',sans-serif" font-weight="900" font-size="78" letter-spacing="-2" fill="#1a1a1a">FT</text>
 </svg></div>
-      <div class="logo-item"><svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <path id="bc-top" d="M 22,105 A 78,78 0 1 1 178,105"/>
-    <path id="bc-bot" d="M 30,114 A 70,70 0 0 0 170,114"/>
-  </defs>
-  <circle cx="100" cy="100" r="92" fill="none" stroke="#1a1a1a" stroke-width="3"/>
-  <circle cx="100" cy="100" r="80" fill="none" stroke="#1a1a1a" stroke-width="1.3"/>
-  <text font-family="Georgia,serif" font-weight="700" font-size="12.5" fill="#1a1a1a" letter-spacing="2.2">
-    <textPath href="#bc-top" xlink:href="#bc-top" startOffset="6%">BIANCA ROAD</textPath>
-  </text>
-  <text font-family="Georgia,serif" font-weight="700" font-size="12" fill="#1a1a1a" letter-spacing="2.5">
-    <textPath href="#bc-bot" xlink:href="#bc-bot" startOffset="17%">BREW CO.</textPath>
-  </text>
-  <text x="100" y="76" text-anchor="middle" font-family="Arial,sans-serif" font-weight="600" font-size="8" letter-spacing="1.5" fill="#1a1a1a">EST 2016</text>
-  <g transform="translate(100,114)" fill="#1a1a1a">
-    <polygon points="-28,-5 0,-26 28,-5 28,2 -28,2"/>
-    <rect x="-22" y="-2" width="44" height="24"/>
-    <rect x="-3" y="6" width="14" height="16" fill="#fff"/>
-    <rect x="6" y="-22" width="5" height="10" fill="#1a1a1a"/>
-  </g>
-  <text x="100" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-weight="600" font-size="7" letter-spacing="1" fill="#1a1a1a">BREWED IN</text>
-  <text x="100" y="159" text-anchor="middle" font-family="Arial,sans-serif" font-weight="600" font-size="7" letter-spacing="1" fill="#1a1a1a">LONDON</text>
-</svg></div>
+      <div class="logo-item"><img src="assets/client-bianca-road.webp" alt="Bianca Road Brew Co." width="560" height="347" loading="lazy"></div>
       <div class="logo-item"><svg width="260" height="60" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg">
 <text x="0" y="42" font-family="'Arial Black',sans-serif" font-weight="900" font-size="40" letter-spacing="1" fill="#2e9b85">VILLAGES</text>
 </svg></div>
@@ -453,21 +413,8 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <text x="140" y="102" text-anchor="middle" font-family="Georgia,serif" font-weight="500" font-size="10" letter-spacing="2.5" fill="#1a1a1a">LONDON</text>
 <line x1="160" y1="98" x2="192" y2="98" stroke="#1a1a1a" stroke-width="1"/>
 </svg></div>
-      <div class="logo-item"><svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 10,10 L 130,10 L 130,95 Q 130,108 120,115 L 70,132 L 20,115 Q 10,108 10,95 Z" fill="#1a1a1a"/>
-  <path d="M 16,16 L 124,16 L 124,92 Q 124,103 115,110 L 70,125 L 25,110 Q 16,103 16,92 Z" fill="none" stroke="#ffffff" stroke-width="2.5"/>
-  <text x="70" y="50" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="19" letter-spacing="1" fill="#ffffff">PRESSURE</text>
-  <text x="70" y="72" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900" font-size="19" letter-spacing="1" fill="#ffffff">DROP</text>
-  <line x1="17" y1="102" x2="30" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="30" y1="102" x2="43" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="43" y1="102" x2="56" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="56" y1="102" x2="69" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="69" y1="102" x2="82" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="82" y1="102" x2="95" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="95" y1="102" x2="108" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <line x1="108" y1="102" x2="121" y2="80" stroke="#ffffff" stroke-width="1.2" opacity="0.4"/>
-  <ellipse cx="70" cy="91" rx="38" ry="8" fill="#1a1a1a" opacity="0.6"/>
-</svg></div>
+      <div class="logo-item"><img src="assets/client-pressure-drop.webp" alt="Pressure Drop Brewing" width="418" height="420" loading="lazy"></div>
+<div class="logo-item"><img src="assets/client-gravity-theory.webp" alt="Gravity Theory Cider" width="560" height="222" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -561,46 +508,48 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 <!-- Testimonials -->
 <section class="section" id="testimonials">
   <div class="container">
-    <div class="t-head reveal">
-      <div class="section-head">
-        <span class="kicker">What our clients say</span>
-        <h2>Trusted by London's leading independents.</h2>
-        <p class="lead">We've partnered with breweries, distributors and logistics companies across the capital.</p>
-      </div>
-      <div class="t-nav">
-        <button type="button" id="t-prev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button type="button" id="t-next" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
+    <div class="section-head reveal">
+      <span class="kicker">What our clients say</span>
+      <h2>Trusted by London's leading independents.</h2>
+      <p class="lead">We've partnered with breweries, distributors and logistics companies across the capital.</p>
     </div>
-    <div class="t-track" id="t-track">
-      <figure class="t-card reveal">
-        <div class="t-top"><span class="t-mark">“</span></div>
-        <blockquote>WDS Solutions have been a fantastic courier partner for us. They are reliable, professional, and always make the process of delivering our cider to bars and pubs around London straightforward and stress-free.</blockquote>
-        <div class="more"><span>For the 2 years we have used them, we have had no issues or complaints. For a drinks brand like ours, having a courier service we can trust is essential, and WDS Solutions have proved to be the perfect solution. Their communication is excellent, deliveries are handled with care, and they consistently provide a dependable service.</span></div>
-        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-        <figcaption class="t-author"><div class="avatar">GT</div><div><b>Gravity Theory Cider</b><span>London, UK</span></div></figcaption>
-      </figure>
-      <figure class="t-card reveal d1">
-        <div class="t-top"><span class="t-mark">“</span></div>
-        <blockquote>We have been using WDS Courier for years, and they have been a key partner since the very beginning of our brewery. As the first courier we onboarded, they have consistently delivered a dependable and high-quality service.</blockquote>
-        <div class="more"><span>Their reliability and flexibility are outstanding — they are always willing to accommodate last-minute delivery requests, which is incredibly valuable in our fast-paced environment. Communication is excellent, with regular updates on ETAs and prompt provision of proof of delivery. Overall, WDS offers a highly professional, efficient, and on-time delivery service that we trust completely. We would highly recommend them.</span></div>
-        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-        <figcaption class="t-author"><div class="avatar">BB</div><div><b>Brixton Brewery</b><span>London, UK</span></div></figcaption>
-      </figure>
-      <figure class="t-card reveal d2">
-        <div class="t-top"><span class="t-mark">“</span></div>
-        <blockquote>We've been consistently impressed with the service from this logistics company. Every shipment is delivered on time, well handled, and exactly as expected.</blockquote>
-        <div class="more"><span>The team is professional, reliable, and always goes the extra mile to ensure everything runs smoothly. Their communication is excellent, and it's reassuring to know we can count on them for every delivery. We highly recommend their services to anyone looking for a dependable and efficient delivery partner.</span></div>
-        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-        <figcaption class="t-author"><div class="avatar">BR</div><div><b>Bianca Road</b><span>London, UK</span></div></figcaption>
-      </figure>
-      <figure class="t-card reveal d3">
-        <div class="t-top"><span class="t-mark">“</span></div>
-        <blockquote>WDS have been making deliveries for us across London for several years now, with great efficiency and a strong service ethic. I would have no hesitation in recommending them to other businesses.</blockquote>
-        <div class="more"><span>They are flexible, responsive to inquiries, and quick to rectify errors, including errors which are made on our side (when the wrong goods are provided for an order, for example). Above all, we can rely on them to get our products out to our customers in a timely fashion.</span></div>
-        <button type="button" class="t-toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-        <figcaption class="t-author"><div class="avatar">PD</div><div><b>Pressure Drop Brewing</b><span>London, UK</span></div></figcaption>
-      </figure>
+    <div class="t-frame-wrap reveal" id="t-wrap" aria-roledescription="carousel" aria-label="Client reviews">
+      <div class="t-frame">
+        <div class="t-logos" aria-hidden="true">
+          <div class="t-logo on" style="--w:72%"><img src="assets/client-gravity-theory.webp" alt="" width="560" height="222" loading="lazy"></div>
+          <div class="t-logo" style="--h:62%"><img src="assets/client-brixton-brewery.webp" alt="" width="339" height="339" loading="lazy"></div>
+          <div class="t-logo" style="--w:52%"><img src="assets/client-bianca-road.webp" alt="" width="560" height="347" loading="lazy"></div>
+          <div class="t-logo" style="--h:56%"><img src="assets/client-pressure-drop.webp" alt="" width="418" height="420" loading="lazy"></div>
+        </div>
+        <div class="t-quotes" aria-live="polite">
+          <figure class="t-slide on">
+            <span class="t-mark" aria-hidden="true">“</span>
+            <blockquote>WDS Solutions have been a fantastic courier partner for us. They are reliable, professional, and always make the process of delivering our cider to bars and pubs around London straightforward and stress-free.</blockquote>
+            <figcaption class="t-author"><b>Gravity Theory Cider</b><span>London, UK</span></figcaption>
+          </figure>
+          <figure class="t-slide" aria-hidden="true">
+            <span class="t-mark" aria-hidden="true">“</span>
+            <blockquote>We have been using WDS Courier for years, and they have been a key partner since the very beginning of our brewery. As the first courier we onboarded, they have consistently delivered a dependable and high-quality service.</blockquote>
+            <figcaption class="t-author"><b>Brixton Brewery</b><span>London, UK</span></figcaption>
+          </figure>
+          <figure class="t-slide" aria-hidden="true">
+            <span class="t-mark" aria-hidden="true">“</span>
+            <blockquote>We've been consistently impressed with the service from this logistics company. Every shipment is delivered on time, well handled, and exactly as expected.</blockquote>
+            <figcaption class="t-author"><b>Bianca Road</b><span>London, UK</span></figcaption>
+          </figure>
+          <figure class="t-slide" aria-hidden="true">
+            <span class="t-mark" aria-hidden="true">“</span>
+            <blockquote>WDS have been making deliveries for us across London for several years now, with great efficiency and a strong service ethic. I would have no hesitation in recommending them to other businesses.</blockquote>
+            <figcaption class="t-author"><b>Pressure Drop Brewing</b><span>London, UK</span></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="t-tabs" role="tablist">
+        <button type="button" class="t-tab on" role="tab" aria-selected="true" aria-label="Gravity Theory Cider"><img src="assets/client-gravity-theory.webp" alt="" width="560" height="222" loading="lazy"><i></i></button>
+        <button type="button" class="t-tab" role="tab" aria-selected="false" aria-label="Brixton Brewery"><img src="assets/client-brixton-brewery.webp" alt="" width="339" height="339" loading="lazy"><i></i></button>
+        <button type="button" class="t-tab" role="tab" aria-selected="false" aria-label="Bianca Road"><img src="assets/client-bianca-road.webp" alt="" width="560" height="347" loading="lazy"><i></i></button>
+        <button type="button" class="t-tab" role="tab" aria-selected="false" aria-label="Pressure Drop Brewing"><img src="assets/client-pressure-drop.webp" alt="" width="418" height="420" loading="lazy"><i></i></button>
+      </div>
     </div>
   </div>
 </section>
@@ -684,16 +633,23 @@ burger.addEventListener('click',()=>{
 });
 document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
 
-const track=document.getElementById('t-track'),prev=document.getElementById('t-prev'),next=document.getElementById('t-next');
-const step=()=>track.querySelector('.t-card').offsetWidth+16;
-const upd=()=>{prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
-prev.addEventListener('click',()=>track.scrollBy({left:-step()}));
-next.addEventListener('click',()=>track.scrollBy({left:step()}));
-track.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
-document.querySelectorAll('.t-toggle').forEach(b=>b.addEventListener('click',()=>{
-  const c=b.closest('.t-card'),o=c.classList.toggle('open');
-  b.setAttribute('aria-expanded',o);b.firstChild.textContent=o?'Show less ':'Read more ';
-}));
+const wrap=document.getElementById('t-wrap'),slides=[...wrap.querySelectorAll('.t-slide')],tlogos=[...wrap.querySelectorAll('.t-logo')],tabs=[...wrap.querySelectorAll('.t-tab')];
+const DUR=4500,still=matchMedia('(prefers-reduced-motion: reduce)').matches;let cur=0,timer=null,left=DUR,started=0;
+wrap.style.setProperty('--dur',DUR+'ms');
+const run=()=>{if(still)return;clearTimeout(timer);started=Date.now();timer=setTimeout(()=>show(cur+1),left)};
+const show=i=>{
+  cur=(i+slides.length)%slides.length;
+  [slides,tlogos,tabs].forEach(g=>g.forEach((el,k)=>el.classList.toggle('on',k===cur)));
+  slides.forEach((s,k)=>s.setAttribute('aria-hidden',k!==cur));
+  tabs.forEach((b,k)=>{b.setAttribute('aria-selected',k===cur);const bar=b.querySelector('i');bar.style.animation='none';bar.offsetWidth;bar.style.animation=''});
+  left=DUR;if(!wrap.classList.contains('paused'))run();
+};
+wrap.addEventListener('mouseenter',()=>{clearTimeout(timer);left-=Date.now()-started;wrap.classList.add('paused')});
+wrap.addEventListener('mouseleave',()=>{wrap.classList.remove('paused');run()});
+tabs.forEach((b,k)=>b.addEventListener('click',()=>show(k)));
+let sx=null;wrap.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+wrap.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)show(cur+(d<0?1:-1));sx=null});
+if(still)wrap.classList.add('paused');else run();
 
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
