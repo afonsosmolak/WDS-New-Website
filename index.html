@@ -191,6 +191,26 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .fl-tab.on i{animation:t-fill var(--dur,4.5s) linear forwards}
 .rot.paused .fl-tab.on i{animation-play-state:paused}
 
+
+/* Storage */
+.storage{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.storage-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(48px,7vw,104px);align-items:center}
+.storage-media{position:relative;z-index:0}
+.storage-media::before{content:'';position:absolute;inset:0;transform:translate(-18px,18px);border:1px solid #D9BC6E;border-radius:var(--r-lg);z-index:-1}
+.storage-media img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-lg)}
+.storage-tag{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13.5px;font-weight:500;box-shadow:var(--shadow-sm)}
+.storage-tag svg{width:15px;height:15px;color:var(--accent)}
+.storage-copy .lead{margin-top:16px}
+.s-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:36px 0}
+.s-feat{position:relative;display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:var(--r-md);border:1px solid rgba(201,160,67,.45);background:var(--bg);transition:border-color .3s,transform .3s}
+.s-feat::after{content:'';position:absolute;inset:5px;border:1px solid rgba(201,160,67,.16);border-radius:12px;pointer-events:none}
+.s-feat:hover{border-color:var(--gold);transform:translateY(-2px)}
+.s-feat svg{box-sizing:content-box;width:18px;height:18px;padding:9px;border-radius:50%;background:var(--accent-soft);color:var(--accent);flex-shrink:0}
+.s-feat b{display:block;font-size:15px;font-weight:600;line-height:1.3;margin-bottom:3px}
+.s-feat span{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.storage-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.storage-ctas small{font-size:13.5px;color:var(--ink-3)}
+
 /* Standards / about */
 .about{background:var(--sand)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,96px);align-items:start}
@@ -297,6 +317,9 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .svc-grid{grid-template-columns:1fr}
   .fl-frame{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
+  .storage-grid{grid-template-columns:1fr}
+  .storage-media img{aspect-ratio:3/2}
+  .storage-media::before{transform:translate(-12px,12px)}
   .cta-box{grid-template-columns:1fr}
 }
 @media(max-width:860px){
@@ -320,6 +343,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   .fl-tab{flex-direction:column;gap:4px;font-size:12.5px;height:68px;text-align:center;line-height:1.2}
   .fl-frame::after{inset:7px;border-radius:17px}
   .points{grid-template-columns:1fr}
+  .s-feats{grid-template-columns:1fr}
   .t-tabs{gap:8px}
   .t-tab img{max-width:64px;max-height:34px}
   .t-frame::after{inset:7px;border-radius:17px}
@@ -362,6 +386,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#storage">Storage</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#testimonials">Clients</a></li>
     </ul>
@@ -375,6 +400,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#storage">Storage</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#testimonials">Clients</a></li>
       </ul>
@@ -581,6 +607,36 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
   </div>
 </section>
 
+<!-- Storage -->
+<section class="section storage" id="storage">
+  <div class="container storage-grid">
+    <div class="storage-media reveal">
+      <picture>
+        <source media="(max-width:1024px)" srcset="assets/warehouse-wide.webp" width="1536" height="1024">
+        <img src="assets/warehouse-tall.webp" alt="WDS warehouse in central London with racked pallets of kegs and cases" width="1086" height="1448" loading="lazy">
+      </picture>
+      <span class="storage-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Central London</span>
+    </div>
+    <div class="storage-copy">
+      <div class="reveal">
+        <span class="kicker">Pallet storage</span>
+        <h2>Warehouse space in <span class="gold-text">central London.</span></h2>
+        <p class="lead">Store your stock with us and we'll deliver it when you need it. Secure, flexible pallet storage for breweries, food suppliers and commercial businesses — right in the heart of the city.</p>
+      </div>
+      <div class="s-feats">
+        <div class="s-feat reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><div><b>Central London</b><span>Close to your customers for faster drops.</span></div></div>
+        <div class="s-feat reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Secure facility</b><span>Your stock is safe, organised and looked after.</span></div></div>
+        <div class="s-feat reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect x="6" y="10" width="12" height="12"/></svg><div><b>Flexible space</b><span>Store a few pallets or scale up as you grow.</span></div></div>
+        <div class="s-feat reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg><div><b>Store &amp; deliver</b><span>Same-day dispatch straight from the warehouse.</span></div></div>
+      </div>
+      <div class="storage-ctas reveal">
+        <a href="https://wa.me/447927321895?text=Hi%20WDS%2C%20I%27d%20like%20to%20ask%20about%20pallet%20storage%20in%20central%20London." class="btn btn-gold" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Ask about storage</a>
+        <small>Opens WhatsApp with a ready-made message</small>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- About / standards -->
 <section class="section about" id="about">
   <div class="container">
@@ -697,7 +753,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
         <h4>Services</h4>
         <ul>
           <li><a href="#services">Same-day delivery</a></li>
-          <li><a href="#services">Pallet storage</a></li>
+          <li><a href="#storage">Pallet storage</a></li>
           <li><a href="#services">Pallet distribution</a></li>
           <li><a href="#fleet">Our fleet</a></li>
         </ul>
