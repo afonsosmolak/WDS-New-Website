@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero-driver.webp">
+<link rel="preload" as="image" href="assets/hero-arch.webp">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"WDS Transport Solutions","url":"https://wdstransportsolutions.co.uk/","image":"https://wdstransportsolutions.co.uk/assets/og.jpg","telephone":"+447927321895","areaServed":"London","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"sameAs":["https://www.instagram.com/wdssolutions/"]}
 </script>
@@ -121,8 +121,8 @@ h3{font-size:19px;line-height:1.3;letter-spacing:-.01em}
 .hero-media::before{content:'';position:absolute;inset:0;transform:translate(18px,18px);border:1px solid #D9BC6E;border-radius:var(--r-lg);z-index:-1}
 .hero-media::after{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,175,80,.28),transparent 70%);z-index:-2;pointer-events:none}
 .hero-grid{position:relative;z-index:0}
-.hero-media picture img{width:100%;aspect-ratio:4/4.4;object-fit:cover;object-position:42% center;border-radius:var(--r-lg)}
-.hero-note{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);white-space:nowrap;width:max-content;background:var(--surface);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px)}
+.hero-media picture img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:var(--r-lg)}
+.hero-note{position:absolute;left:24px;bottom:24px;white-space:nowrap;width:max-content;background:var(--surface);border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px)}
 .hero-note img{width:40px;height:40px;border-radius:50%}
 .hero-note{border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .hero-note b{display:block;font-size:14.5px;font-weight:600;line-height:1.3}
@@ -312,8 +312,8 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
 /* Responsive */
 @media(max-width:1024px){
   .hero-grid{grid-template-columns:1fr}
-  .hero-media picture img{aspect-ratio:16/11}
-  .hero-note{bottom:20px}
+  .hero-media picture img{aspect-ratio:1/1;object-position:50% 62%}
+  .hero-note{bottom:16px;left:16px}
   .svc-grid{grid-template-columns:1fr}
   .fl-frame{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
@@ -434,7 +434,7 @@ footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;back
     </div>
     <div class="hero-media reveal d2">
       <picture>
-        <img src="assets/hero-driver.webp" alt="WDS driver loading palletised goods into a white van outside a London warehouse" width="1400" height="933" fetchpriority="high">
+        <img src="assets/hero-arch.webp" alt="WDS driver moving a pallet from a white van into a railway-arch warehouse in London at sunrise" width="1122" height="1402" fetchpriority="high">
       </picture>
       <div class="hero-note">
         <img src="assets/logo-128.png" alt="" width="40" height="40">
